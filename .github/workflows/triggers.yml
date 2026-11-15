@@ -6,8 +6,7 @@ on:
       - master
   pull_request:
     types: [opened, synchronize, reopened]
-    paths:
-      - '**.py'
+    branches: ["main", "master"]
   issues:
     types:
       - labeled
@@ -15,8 +14,8 @@ on:
     inputs:
       lenguaje_favorito:
         description: 'Lenguaje favorito'
-        default: Python
-        required: true
+        default: sh
+        required: false
         type: choice
         options:
         - Python
@@ -25,11 +24,9 @@ on:
         - C#
       nombre:
         description: 'Fernando'
-        required: true
+        required: false
         default: Juan
         type: string
-  schedule:
-    - cron:  '15 22 * * *'
 jobs:
   hola-mundo:
     runs-on: ubuntu-latest
