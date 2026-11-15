@@ -1,5 +1,5 @@
-name: Aprendiendo github actions
-run-name: !Aprendiendo GitHub Actions!
+name: hola-mundo
+run-name: Aprendiendo GitHub Actions
 
 on: push
 
@@ -9,11 +9,7 @@ jobs:
     steps:
       - name: Descargar repositorio
         uses: actions/checkout@v4
-
-      - name: Public IP
-        uses: haythem/public-ip@v1.3
         
       - name: Correr script hola mundo
-        run: |
-          bash .github/script/hola-mundo.sh
+        run: bash .github/script/hola-mundo.sh
     
