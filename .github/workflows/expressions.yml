@@ -1,0 +1,46 @@
+name: Ejemplo de Expresiones
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      entorno:
+        description: 'Selecciona el entorno'
+        required: true
+        default: 'pruebas'
+        type: choice
+        options:
+          - pruebas
+          - produccion
+
+jobs:
+  probar-expresiones:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Acceder a información del contexto de GitHub
+      - name: Mostrar datos del repositorio y usuario
+        run: |
+          echo "Usuario que ejecutó el flujo: ${{ github.actor }}"
+          echo "Rama actual: ${{ github.ref_name }}"
+          echo "Evento que lo disparó: ${{ github.event_name }}"
+
+      # 2. Usar funciones integradas (contains, startsWith, format)
+      - name: Usar funciones de texto
+        run: |
+          echo "${{ format('Hola {0}, estás en el repo {1}', github.actor, github.repository) }}"
+
+      # 3. Condicionales con 'if' (no requiere escribir ${{ }} dentro de 'if')
+      - name: Paso solo para producción
+        if: inputs.entorno == 'produccion'
+        run: echo "Desplegando en PRODUCCIÓN..."
+
+      - name: Paso solo para pruebas o push directo
+        if: inputs.entorno == 'pruebas' || github.event_name == 'push'
+        run: echo "Ejecutando en modo PRUEBAS..."
+
+      # 4. Operador ternario simulado (en GitHub Actions se hace con && y ||)
+      - name: Asignar mensaje dinámico
+        run: |
+          MENSAJE="${{ github.ref_name == 'main' && 'Es la rama principal' || 'Es otra rama' }}"
+          echo "Resultado: $MENSAJE"
