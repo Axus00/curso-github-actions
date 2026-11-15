@@ -1,0 +1,15 @@
+name: hola-mundo
+run-name: Aprendiendo GitHub Actions
+
+on: push
+
+jobs:
+  hola-mundo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+        
+      - name: Correr script hola mundo
+        run: bash .github/script/hola-mundo.sh
+    
