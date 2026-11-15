@@ -13,5 +13,5 @@ jobs:
         
       - name: Correr script hola mundo
         run: |
-          bash .././script/hola-mundo.sh
+          bash .github/script/hola-mundo.sh
     
