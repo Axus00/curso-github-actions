@@ -6,10 +6,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Public IP
         uses: haythem/public-ip@v1.3
         
       - name: Correr script hola mundo
         run: |
-          chmod +x ./script/hola-mundo.sh
-          ./script/hola-mundo.sh
+          bash ./script/hola-mundo.sh
     
