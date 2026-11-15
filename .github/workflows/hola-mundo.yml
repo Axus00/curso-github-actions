@@ -1,4 +1,6 @@
-name: hola-mundo
+name: Aprendiendo github actions
+run-name: !Aprendiendo GitHub Actions!
+
 on: push
 
 jobs:
